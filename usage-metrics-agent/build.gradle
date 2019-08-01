@@ -1,0 +1,13 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+dependencies {
+	project(':usage-metrics-common')
+}
+
+apply plugin: 'application'
+
+mainClassName = 'com.foilen.usagemetrics.agent.AgentApp'

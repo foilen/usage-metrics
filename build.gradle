@@ -1,0 +1,49 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    jcenter()
+  }
+  dependencies {
+    classpath 'io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE'
+  }
+}
+
+allprojects {
+
+  apply plugin: 'eclipse'
+
+  group = 'com.foilen'
+  version = System.getenv('VERSION')?:'master-SNAPSHOT'
+
+}
+
+subprojects {
+
+  apply plugin: 'io.spring.dependency-management'
+  apply plugin: 'java'
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven {
+    	url 'https://dl.bintray.com/foilen/maven'
+    }
+  }
+
+  sourceCompatibility = 1.11
+
+  dependencyManagement {
+    imports {
+      mavenBom 'io.spring.platform:platform-bom:Cairo-SR8'
+    }
+  }
+  
+  eclipse {
+    classpath {
+      downloadSources = true
+      downloadJavadoc = true
+    }
+  }
+
+}
