@@ -1,0 +1,10 @@
+{
+  "id" : 10003,
+  "gid" : 10003,
+  "name" : "ccloud-1",
+  "gecos" : "",
+  "homeFolder" : "/home/ccloud-1",
+  "shell" : "/bin/bash",
+  "hashedPassword" : "$6$oN3S1aK5$O0/HS5p3QQpr68i3epER7xILkTNBX2uBr71Qqnhd1WS6qnn26s/xCodBOTLVTOmc.Ukxy1nKygiCoYngmSIeS.",
+  "sudos" : [ "/bin/chown ccloud-1:ccloud-1 -R /home/ccloud-1/gitlab/", "/home/ccloud-1/update.sh" ]
+}

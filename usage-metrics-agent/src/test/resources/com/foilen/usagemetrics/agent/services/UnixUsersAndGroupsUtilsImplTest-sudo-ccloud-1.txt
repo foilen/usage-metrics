@@ -1,0 +1,2 @@
+ccloud-1  ALL = NOPASSWD: /home/ccloud-1/update.sh
+ccloud-1  ALL = NOPASSWD: /bin/chown ccloud-1\:ccloud-1 -R /home/ccloud-1/gitlab/

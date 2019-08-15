@@ -5,7 +5,7 @@ buildscript {
 }
 
 dependencies {
-	project(':usage-metrics-common')
+	compile project(':usage-metrics-common')
 }
 
 apply plugin: 'application'

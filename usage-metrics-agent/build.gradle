@@ -5,7 +5,16 @@ buildscript {
 }
 
 dependencies {
-	project(':usage-metrics-common')
+	compile project(':usage-metrics-common')
+	
+	// Tests
+  testCompileOnly 'junit:junit:4.12'
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+  testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
+}
+
+test {
+  useJUnitPlatform()
 }
 
 apply plugin: 'application'

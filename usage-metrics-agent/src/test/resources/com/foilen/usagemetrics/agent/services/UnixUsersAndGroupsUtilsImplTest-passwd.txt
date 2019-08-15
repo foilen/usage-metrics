@@ -1,0 +1,11 @@
+reserved-0:x:0:0:root:/home/a:/bin/bash
+reserved-1:x:8:8:mail:/home/a:/usr/sbin/nologin
+reserved-2:x:111:124:Dovecot mail server,,,:/home/a:/bin/false
+reserved-3:x:114:127::/home/a:/bin/bash
+reserved-4:x:1004:1005::/home/a:/bin/bash
+reserved-5:x:1010:1011::/home/a:/bin/bash
+ccloud-0:x:10000:10000::/home/a:/bin/bash
+ccloud-1:x:10003:10003::/home/ccloud-1:/bin/bash
+ccloud-2:x:10006:10006::/home/a:/bin/false
+ccloud-3:x:10007:10007::/home/a:
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin

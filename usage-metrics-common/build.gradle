@@ -5,11 +5,15 @@ buildscript {
 }
 
 dependencies {
+
+  // Tools
+  compile 'com.google.guava:guava:28.0-jre'
   
   // For jl-smalltools
+  compile 'ch.qos.logback:logback-classic:1.2.3'
   compile 'com.foilen:jl-smalltools:0.46.3'
-  compile 'org.apache.commons:commons-lang3:3.6'
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.1'
+  compile "javax.xml.bind:jaxb-api:2.3.1"
   compile 'org.apache.commons:commons-lang3:3.6'
   compile 'org.slf4j:slf4j-api:1.7.25'
   

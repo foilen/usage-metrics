@@ -12,4 +12,27 @@ License: The MIT License (MIT)
 
 # Usage
 
-TODO
+## Compile
+
+```
+./create-local-release.sh
+```
+
+## Agent
+
+```
+# Config
+cat > _agent-config.json << _EOF
+{
+	"diskSpaceRootFs" : "/hostfs/"
+}
+_EOF
+
+# Start
+docker run -ti --rm \
+  --volume $PWD:/local \
+  --volume /:/hostfs \
+  --workdir /local \
+	usage-metrics-agent:master-SNAPSHOT /local/_agent-config.json
+
+```
