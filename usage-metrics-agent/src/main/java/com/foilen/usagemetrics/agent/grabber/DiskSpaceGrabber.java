@@ -12,19 +12,27 @@ package com.foilen.usagemetrics.agent.grabber;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
+import com.foilen.smalltools.consolerunner.ConsoleRunner;
 import com.foilen.smalltools.tools.AbstractBasics;
-import com.foilen.smalltools.tools.DirectoryTools;
+import com.foilen.smalltools.tuple.Tuple2;
 import com.foilen.usagemetrics.agent.AgentApp;
 import com.foilen.usagemetrics.agent.services.UnixUsersAndGroupsUtils;
 import com.foilen.usagemetrics.agent.services.UnixUsersAndGroupsUtilsImpl;
 import com.foilen.usagemetrics.common.api.model.UsageResource;
-import com.google.common.util.concurrent.RateLimiter;
 
 public class DiskSpaceGrabber extends AbstractBasics implements Grabber {
 
     private static final String RESOURCE_TYPE = "localDisk";
+
+    public static long convertdu(String duText) {
+        int position = duText.indexOf('\t');
+        if (position < 0) {
+            position = duText.indexOf(' ');
+        }
+
+        return Long.valueOf(duText.substring(0, position));
+    }
 
     private long lastGradDiskSpaceInBytes;
 
@@ -59,28 +67,26 @@ public class DiskSpaceGrabber extends AbstractBasics implements Grabber {
                     String home = rootFs + '/' + user.getHomeFolder();
 
                     logger.debug("Processing owner {} with home {}", owner, home);
-                    RateLimiter progressRateLimiter = RateLimiter.create(1.0 / 5.0);
-                    progressRateLimiter.tryAcquire();
 
                     UsageResource usageResource = new UsageResource() //
                             .setUsageResourceType(RESOURCE_TYPE) //
                             .setOwner(owner) //
                             .setDetails(user.getHomeFolder());
-                    // TODO Use "du"
-                    AtomicLong total = new AtomicLong();
-                    DirectoryTools.visitFilesAndFoldersRecursively(home, file -> {
-                        if (file.isFile()) {
-                            total.addAndGet(file.length());
-                        }
+                    ConsoleRunner consoleRunner = new ConsoleRunner();
+                    consoleRunner.setCommand("/usr/bin/du");
+                    consoleRunner.addArguments("-s", home);
+                    Tuple2<String, String> out = consoleRunner.executeForStrings();
+                    String duText = out.getA();
+                    if (consoleRunner.getStatusCode() != 0) {
+                        logger.error("Could not retrieve the usage of {} . Got exit code: {}", home, consoleRunner.getStatusCode());
+                        return;
+                    }
 
-                        if (progressRateLimiter.tryAcquire()) {
-                            logger.debug("... {}", total.get());
-                        }
+                    logger.debug("Got for owner {} with home {} : {}", owner, home, duText);
+                    long total = convertdu(duText);
+                    logger.debug("Space for owner {} with home {} is {}", owner, home, total);
 
-                    });
-                    logger.debug("Space for owner {} with home {} is {}", owner, home, total.get());
-
-                    usageResource.setSize(total.get());
+                    usageResource.setSize(total);
                     usageResources.add(usageResource);
 
                 });
