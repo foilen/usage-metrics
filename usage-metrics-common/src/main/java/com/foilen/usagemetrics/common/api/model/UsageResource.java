@@ -7,21 +7,15 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.usagemetrics.common.model;
+package com.foilen.usagemetrics.common.api.model;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(value = Include.NON_EMPTY, content = Include.NON_NULL)
-@JsonPropertyOrder(alphabetic = true)
-public class UsageResource {
+public class UsageResource extends AbstractApiBase {
 
     private String owner;
     private String usageResourceType;

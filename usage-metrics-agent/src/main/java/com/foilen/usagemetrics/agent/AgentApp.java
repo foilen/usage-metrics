@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.foilen.smalltools.restapi.model.AbstractApiBaseWithError;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.JsonTools;
 import com.foilen.smalltools.tools.SecureRandomTools;
@@ -26,7 +27,8 @@ import com.foilen.usagemetrics.agent.grabber.GitlabGrabber;
 import com.foilen.usagemetrics.agent.grabber.Grabber;
 import com.foilen.usagemetrics.agent.grabber.JamesGrabber;
 import com.foilen.usagemetrics.agent.grabber.MatomoGrabber;
-import com.foilen.usagemetrics.common.model.UsageResource;
+import com.foilen.usagemetrics.common.api.UsageCentralApiClientImpl;
+import com.foilen.usagemetrics.common.api.model.UsageResource;
 
 public class AgentApp extends AbstractBasics {
 
@@ -68,6 +70,7 @@ public class AgentApp extends AbstractBasics {
         }
 
         UsageResourcesToSendDao usageResourcesToSendDao = new UsageResourcesToSendDao(new File("_usageResourcesToSend.json"));
+        UsageCentralApiClientImpl usageCentralApiClient = new UsageCentralApiClientImpl(agentConfig.getCentralUri(), agentConfig.getHostname(), agentConfig.getHostnameKey());
 
         // Start the grabbers
         List<Grabber> grabbers = Arrays.asList( //
@@ -119,7 +122,27 @@ public class AgentApp extends AbstractBasics {
                 lastRun = System.currentTimeMillis();
             }
 
-            // TODO Send any pending metrics
+            // Send any pending metrics
+            usageResourcesToSendDao.loadInTransaction(l -> {
+                if (l.getUsageResources().isEmpty()) {
+                    logger.info("No usage to send");
+                    return;
+                }
+
+                logger.info("Got {} usage to send", l.getUsageResources().size());
+                try {
+                    AbstractApiBaseWithError result = usageCentralApiClient.resourceAdd(l.getUsageResources());
+                    if (result.isSuccess()) {
+                        logger.info("Sending usage successfully");
+                        l.getUsageResources().clear();
+                    } else {
+                        logger.error("Got an error when sending usage: {}", result.getError());
+                    }
+                } catch (Exception e) {
+                    logger.error("Problem sending usage", e);
+                }
+
+            });
 
             // Done
             shouldRun = false;

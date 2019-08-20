@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.foilen.smalltools.tools.AbstractBasics;
-import com.foilen.usagemetrics.common.model.UsageResource;
+import com.foilen.usagemetrics.common.api.model.UsageResource;
 
 // TODO DockerGrabber
 public class DockerGrabber extends AbstractBasics implements Grabber {

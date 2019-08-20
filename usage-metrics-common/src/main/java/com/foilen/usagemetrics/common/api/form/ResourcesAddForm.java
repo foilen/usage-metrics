@@ -7,14 +7,14 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.usagemetrics.agent.dao.model;
+package com.foilen.usagemetrics.common.api.form;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.foilen.usagemetrics.common.api.model.UsageResource;
 
-public class UsageResourcesList {
+public class ResourcesAddForm extends AbstractAuthApiBase {
 
     private List<UsageResource> usageResources = new ArrayList<>();
 
@@ -22,8 +22,9 @@ public class UsageResourcesList {
         return usageResources;
     }
 
-    public void setUsageResources(List<UsageResource> usageResources) {
+    public ResourcesAddForm setUsageResources(List<UsageResource> usageResources) {
         this.usageResources = usageResources;
+        return this;
     }
 
 }

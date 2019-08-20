@@ -13,12 +13,12 @@ public class UsageMetricException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public UsageMetricException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
     public UsageMetricException(String message) {
         super(message);
+    }
+
+    public UsageMetricException(String message, Throwable cause) {
+        super(message, cause);
     }
 
     public UsageMetricException(Throwable cause) {

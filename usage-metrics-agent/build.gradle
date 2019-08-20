@@ -5,9 +5,9 @@ buildscript {
 }
 
 dependencies {
-	compile project(':usage-metrics-common')
-	
-	// Tests
+  compile project(':usage-metrics-common')
+  
+  // Tests
   testCompileOnly 'junit:junit:4.12'
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
   testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"

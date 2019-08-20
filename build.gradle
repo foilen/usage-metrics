@@ -27,7 +27,7 @@ subprojects {
     mavenCentral()
     jcenter()
     maven {
-    	url 'https://dl.bintray.com/foilen/maven'
+      url 'https://dl.bintray.com/foilen/maven'
     }
   }
 

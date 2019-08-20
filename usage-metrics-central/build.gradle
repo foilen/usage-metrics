@@ -5,7 +5,22 @@ buildscript {
 }
 
 dependencies {
-	compile project(':usage-metrics-common')
+  compile project(':usage-metrics-common')
+  
+  // Spring
+  compile 'org.springframework.boot:spring-boot-starter-web:2.1.7.RELEASE'
+  
+  // Mongo
+  compile 'org.mongodb:mongo-java-driver:3.11.0'
+  
+  // Tests
+  testCompileOnly 'junit:junit:4.12'
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+  testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
+}
+
+test {
+  useJUnitPlatform()
 }
 
 apply plugin: 'application'

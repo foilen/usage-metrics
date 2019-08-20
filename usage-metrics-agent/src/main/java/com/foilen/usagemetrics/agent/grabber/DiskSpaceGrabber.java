@@ -19,7 +19,7 @@ import com.foilen.smalltools.tools.DirectoryTools;
 import com.foilen.usagemetrics.agent.AgentApp;
 import com.foilen.usagemetrics.agent.services.UnixUsersAndGroupsUtils;
 import com.foilen.usagemetrics.agent.services.UnixUsersAndGroupsUtilsImpl;
-import com.foilen.usagemetrics.common.model.UsageResource;
+import com.foilen.usagemetrics.common.api.model.UsageResource;
 import com.google.common.util.concurrent.RateLimiter;
 
 public class DiskSpaceGrabber extends AbstractBasics implements Grabber {
@@ -66,6 +66,7 @@ public class DiskSpaceGrabber extends AbstractBasics implements Grabber {
                             .setUsageResourceType(RESOURCE_TYPE) //
                             .setOwner(owner) //
                             .setDetails(user.getHomeFolder());
+                    // TODO Use "du"
                     AtomicLong total = new AtomicLong();
                     DirectoryTools.visitFilesAndFoldersRecursively(home, file -> {
                         if (file.isFile()) {
