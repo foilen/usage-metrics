@@ -12,16 +12,13 @@ package com.foilen.usagemetrics.central;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
 import com.foilen.smalltools.restapi.spring.MvcJsonSpringConfig;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.JsonTools;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = { MongoAutoConfiguration.class })
 public class CentralApp extends AbstractBasics {
 
     private static final Logger logger = LoggerFactory.getLogger(CentralApp.class);
@@ -59,6 +56,7 @@ public class CentralApp extends AbstractBasics {
         }
 
         // Start the application
+        System.setProperty("spring.data.mongodb.uri", centralConfig.getMongoUri());
         SpringApplication application = new SpringApplication( //
                 CentralApp.class, //
                 MvcJsonSpringConfig.class //

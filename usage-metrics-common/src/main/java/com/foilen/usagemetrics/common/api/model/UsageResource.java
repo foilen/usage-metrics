@@ -13,9 +13,17 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.foilen.smalltools.restapi.model.AbstractApiBase;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-public class UsageResource extends AbstractApiBase {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(value = Include.NON_EMPTY, content = Include.NON_NULL)
+@JsonPropertyOrder(alphabetic = true)
+public class UsageResource {
+
+    private String batchId;
 
     private String owner;
     private String usageResourceType;
@@ -27,6 +35,10 @@ public class UsageResource extends AbstractApiBase {
     private Map<String, String> extra = new TreeMap<>();
 
     public UsageResource() {
+    }
+
+    public String getBatchId() {
+        return batchId;
     }
 
     public String getDetails() {
@@ -51,6 +63,11 @@ public class UsageResource extends AbstractApiBase {
 
     public String getUsageResourceType() {
         return usageResourceType;
+    }
+
+    public UsageResource setBatchId(String batchId) {
+        this.batchId = batchId;
+        return this;
     }
 
     public UsageResource setDetails(String details) {

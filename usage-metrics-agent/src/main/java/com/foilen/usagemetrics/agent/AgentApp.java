@@ -110,7 +110,10 @@ public class AgentApp extends AbstractBasics {
                         List<UsageResource> usageResources = grabber.grab();
 
                         // Store it in the sending queue
-                        usageResources.forEach(ur -> logger.info("Got {}", ur));
+                        usageResources.forEach(ur -> {
+                            ur.setBatchId(txId);
+                            logger.info("Got {}", ur);
+                        });
                         usageResourcesToSendDao.loadInTransaction(l -> l.getUsageResources().addAll(usageResources));
                     } catch (Exception e) {
                         logger.error("Got an unexpected error in the loop", e);

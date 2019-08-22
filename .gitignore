@@ -12,3 +12,4 @@ bin/
 
 # Project specific
 _*
+.attach_pid*
