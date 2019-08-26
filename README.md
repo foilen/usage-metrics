@@ -12,6 +12,25 @@ License: The MIT License (MIT)
 
 # Usage
 
+## Host API Key
+
+The central application has a *hostKeySalt* that is used to generate the key. Like that, it is possible to add new hosts by
+just letting them start sending information without having to whitelist them (if they have the derived key, then they are allowed).
+
+If you do not provide a *hostKeySalt*, no key is needed.  
+
+It is using `sha256(hostKeySalt + hostname)`.
+
+Example:
+- hostKeySalt: 37D5C
+- hostname: h1.example.com
+- hostnameKey: 22f606813cd8b680aed4282cdf4fe357b435ddd2777dc5619c658de56461f886
+
+To generate it in Linux:
+```
+echo -n 37D5Ch1.example.com | sha256sum
+```
+
 ## Compile
 
 ```

@@ -10,11 +10,10 @@
 package com.foilen.usagemetrics.central;
 
 import com.foilen.smalltools.tools.AbstractBasics;
-import com.foilen.smalltools.tools.SecureRandomTools;
 
 public class CentralConfig extends AbstractBasics {
 
-    private String hostKeySalt = SecureRandomTools.randomBase64String(5);
+    private String hostKeySalt;
 
     private String mongoUri = "mongodb://localhost:27017/usage";
 
