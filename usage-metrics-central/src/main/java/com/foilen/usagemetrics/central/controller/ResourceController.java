@@ -20,6 +20,7 @@ import com.foilen.smalltools.restapi.model.FormResult;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.JsonTools;
 import com.foilen.usagemetrics.central.service.EntitlementService;
+import com.foilen.usagemetrics.central.service.UsageResourceService;
 import com.foilen.usagemetrics.common.api.form.ResourcesAddForm;
 
 @Controller
@@ -28,6 +29,8 @@ public class ResourceController extends AbstractBasics {
 
     @Autowired
     private EntitlementService entitlementService;
+    @Autowired
+    private UsageResourceService usageResourceService;
 
     @PostMapping("/")
     public FormResult addResources(@RequestBody ResourcesAddForm form) {
@@ -38,7 +41,7 @@ public class ResourceController extends AbstractBasics {
         }
 
         logger.info("{}", JsonTools.compactPrintWithoutNulls(form));
-        // TODO Store in MongoDB
+        usageResourceService.addUsageResource(form.getHostname(), form.getUsageResources());
         return result;
     }
 
