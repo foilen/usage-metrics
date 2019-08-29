@@ -89,7 +89,6 @@ _EOF
 # Start
 docker run -ti --rm \
   --volume $PWD:/local \
-  --volume /:/hostfs \
   --workdir /local \
   usage-metrics-central:master-SNAPSHOT /local/_central-config.json
 
