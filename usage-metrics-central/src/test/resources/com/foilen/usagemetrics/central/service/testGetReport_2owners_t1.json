@@ -1,0 +1,41 @@
+{
+  "reportByOwner" : {
+    "NO_OWNER" : {
+      "size" : 30,
+      "usages" : [ {
+        "details" : "ccc",
+        "hostname" : "h2",
+        "size" : 30,
+        "usageResourceOwner" : "ccc",
+        "usageResourceType" : "DiskUsage"
+      } ]
+    },
+    "o1" : {
+      "size" : 30,
+      "usages" : [ {
+        "details" : "aaa",
+        "hostname" : "h1",
+        "size" : 10,
+        "usageResourceOwner" : "aaa",
+        "usageResourceType" : "DiskUsage"
+      }, {
+        "details" : "bbb",
+        "hostname" : "h1",
+        "size" : 20,
+        "usageResourceOwner" : "bbb",
+        "usageResourceType" : "DiskUsage"
+      } ]
+    },
+    "o2" : {
+      "size" : 100,
+      "usages" : [ {
+        "details" : "aaa",
+        "hostname" : "h1",
+        "size" : 100,
+        "usageResourceOwner" : "aaa",
+        "usageResourceType" : "Docker"
+      } ]
+    }
+  },
+  "success" : true
+}

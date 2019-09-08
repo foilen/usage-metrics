@@ -9,10 +9,12 @@
  */
 package com.foilen.usagemetrics.central.service;
 
-public interface EntitlementService {
+import java.util.Date;
 
-    boolean hostCanAddResources(String authUser, String authKey);
+import com.foilen.usagemetrics.common.api.model.ReportShowResult;
 
-    boolean reportCanShow(String authUser, String authKey);
+public interface ReportService {
+
+    ReportShowResult getReport(Date forDate);
 
 }

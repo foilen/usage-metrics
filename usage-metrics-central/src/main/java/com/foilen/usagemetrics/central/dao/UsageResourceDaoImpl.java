@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.util.CloseableIterator;
 import org.springframework.stereotype.Service;
 
 import com.foilen.smalltools.tools.AbstractBasics;
@@ -40,6 +41,14 @@ public class UsageResourceDaoImpl extends AbstractBasics implements UsageResourc
                 .and("timestamp").gt(timestamp) //
                 .and("batchId").ne(ignoreBatchId) //
         ), UsageResourceExtended.class);
+    }
+
+    @Override
+    public CloseableIterator<UsageResourceExtended> findAtTime(Date timestamp) {
+        return mongoTemplate.stream(new Query(Criteria //
+                .where("timestamp").lte(timestamp).and("endTimestamp").gt(timestamp) //
+        ), //
+                UsageResourceExtended.class);
     }
 
     @Override

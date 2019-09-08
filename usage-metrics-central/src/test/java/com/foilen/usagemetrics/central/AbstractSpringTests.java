@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.foilen.usagemetrics.central.dao.OwnerMappingDao;
 import com.foilen.usagemetrics.central.dao.UsageResourceDao;
 import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
 import com.foilen.usagemetrics.common.api.model.UsageResource;
@@ -28,7 +29,9 @@ import com.foilen.usagemetrics.common.api.model.UsageResource;
 public abstract class AbstractSpringTests {
 
     @Autowired
-    private UsageResourceDao usageResourceDao;
+    protected OwnerMappingDao ownerMappingDao;
+    @Autowired
+    protected UsageResourceDao usageResourceDao;
 
     public AbstractSpringTests() {
         System.setProperty("spring.data.mongodb.uri", "mongodb://127.0.0.1:27017/usage-unit-tests");
@@ -36,6 +39,7 @@ public abstract class AbstractSpringTests {
 
     @Before
     public void clearDb() {
+        ownerMappingDao.deleteAll();
         usageResourceDao.deleteAll();
     }
 

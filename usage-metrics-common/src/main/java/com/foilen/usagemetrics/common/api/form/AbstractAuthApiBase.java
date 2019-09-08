@@ -13,23 +13,28 @@ import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public abstract class AbstractAuthApiBase extends AbstractApiBase {
 
-    private String hostname;
-    private String hostnameKey;
+    private String authUser;
+    private String authKey;
 
-    public String getHostname() {
-        return hostname;
+    public String getAuthKey() {
+        return authKey;
     }
 
-    public String getHostnameKey() {
-        return hostnameKey;
+    public String getAuthUser() {
+        return authUser;
     }
 
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
+    public void setAuth(String authUser, String authKey) {
+        this.authUser = authUser;
+        this.authKey = authKey;
     }
 
-    public void setHostnameKey(String hostnameKey) {
-        this.hostnameKey = hostnameKey;
+    public void setAuthKey(String authKey) {
+        this.authKey = authKey;
+    }
+
+    public void setAuthUser(String authUser) {
+        this.authUser = authUser;
     }
 
 }

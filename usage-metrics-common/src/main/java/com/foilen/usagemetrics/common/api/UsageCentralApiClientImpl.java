@@ -22,15 +22,15 @@ import com.foilen.usagemetrics.common.api.model.UsageResource;
 public class UsageCentralApiClientImpl extends AbstractBasics {
 
     private String centralUri;
-    private String hostname;
-    private String hostnameKey;
+    private String authUser;
+    private String authKey;
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    public UsageCentralApiClientImpl(String centralUri, String hostname, String hostnameKey) {
+    public UsageCentralApiClientImpl(String centralUri, String authUser, String authKey) {
         this.centralUri = centralUri;
-        this.hostname = hostname;
-        this.hostnameKey = hostnameKey;
+        this.authUser = authUser;
+        this.authKey = authKey;
 
         if (this.centralUri.endsWith("/")) {
             this.centralUri = this.centralUri.substring(0, this.centralUri.length() - 1);
@@ -38,8 +38,7 @@ public class UsageCentralApiClientImpl extends AbstractBasics {
     }
 
     private <F extends AbstractAuthApiBase> F addAuth(F auth) {
-        auth.setHostname(hostname);
-        auth.setHostnameKey(hostnameKey);
+        auth.setAuth(authUser, authKey);
         return auth;
     }
 

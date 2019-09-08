@@ -45,11 +45,25 @@ docker run --rm --detach \
   --publish 27017:27017 \
   --name usage-mongo \
    mongo:4.0.12
-   
+
 # MongoShell
 docker exec -ti usage-mongo mongo
 	use usage
 	show collections
+
+# Add API user (test / test)
+docker exec -i usage-mongo mongo << _EOF
+  use usage
+  db.apiUser.update({_id: 'test'}, 
+  	{_id: 'test', authPasswordHash: '$(echo -n test | sha256sum | cut -d' ' -f 1)'}, 
+  	{upsert: true})
+_EOF
+
+# Show all users
+docker exec -i usage-mongo mongo << _EOF
+  use usage
+  db.apiUser.find()
+_EOF
 
 ```
 
@@ -62,7 +76,7 @@ cat > _agent-config.json << _EOF
   "centralUri" : "https://usage.example.com",
   "hostname" : "h1.example.com",
   "hostnameKey" : "F5AAB679C",
-  
+
   "diskSpaceRootFs" : "/hostfs/"
 }
 _EOF
@@ -83,7 +97,7 @@ docker run -ti --rm \
 cat > _central-config.json << _EOF
 {
   "hostKeySalt" : "KFJeufjf773jf",
-  
+
   "mongoUri" : "mongodb://172.17.0.2:27017/usage"
 }
 _EOF

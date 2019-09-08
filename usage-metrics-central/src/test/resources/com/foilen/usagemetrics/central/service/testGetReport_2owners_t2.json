@@ -1,0 +1,31 @@
+{
+  "reportByOwner" : {
+    "NO_OWNER" : {
+      "size" : 70,
+      "usages" : [ {
+        "details" : "ccc",
+        "hostname" : "h2",
+        "size" : 70,
+        "usageResourceOwner" : "ccc",
+        "usageResourceType" : "DiskUsage"
+      } ]
+    },
+    "o1" : {
+      "size" : 110,
+      "usages" : [ {
+        "details" : "aaa",
+        "hostname" : "h1",
+        "size" : 50,
+        "usageResourceOwner" : "aaa",
+        "usageResourceType" : "DiskUsage"
+      }, {
+        "details" : "bbb",
+        "hostname" : "h1",
+        "size" : 60,
+        "usageResourceOwner" : "bbb",
+        "usageResourceType" : "DiskUsage"
+      } ]
+    }
+  },
+  "success" : true
+}

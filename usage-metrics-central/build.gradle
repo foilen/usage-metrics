@@ -21,7 +21,7 @@ dependencies {
   // Tests
   testCompileOnly 'junit:junit:4.12'
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-  testCompile 'org.springframework.boot:spring-boot-starter-test:2.1.7.RELEASE'
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
   testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
 }
 
@@ -34,9 +34,9 @@ apply plugin: 'application'
 mainClassName = 'com.foilen.usagemetrics.central.CentralApp'
 
 jar {
-	enabled = true
+  enabled = true
 }
 
 bootJar {
-	classifier = 'boot'
+  classifier = 'boot'
 }

@@ -35,13 +35,13 @@ public class ResourceController extends AbstractBasics {
     @PostMapping("/")
     public FormResult addResources(@RequestBody ResourcesAddForm form) {
         FormResult result = new FormResult();
-        if (!entitlementService.hostCanAddResources(form.getHostname(), form.getHostnameKey())) {
+        if (!entitlementService.hostCanAddResources(form.getAuthUser(), form.getAuthKey())) {
             result.setError(new ApiError("The host does not have the right key"));
             return result;
         }
 
-        logger.info("{}", JsonTools.compactPrintWithoutNulls(form));
-        usageResourceService.addUsageResource(form.getHostname(), form.getUsageResources());
+        logger.info("Hostname: {} -> Usage Resources: {}", form.getAuthUser(), JsonTools.compactPrintWithoutNulls(form.getUsageResources()));
+        usageResourceService.addUsageResource(form.getAuthUser(), form.getUsageResources());
         return result;
     }
 

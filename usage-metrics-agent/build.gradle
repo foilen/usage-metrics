@@ -1,8 +1,9 @@
 buildscript {
-    repositories {
-        jcenter()
-    }
+  repositories {
+    jcenter()
+  }
 }
+
 
 dependencies {
   compile project(':usage-metrics-common')

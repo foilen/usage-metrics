@@ -49,8 +49,9 @@ public class UsageResourceExtended extends UsageResource {
         return this;
     }
 
-    public void setId(String id) {
+    public UsageResourceExtended setId(String id) {
         this.id = id;
+        return this;
     }
 
 }

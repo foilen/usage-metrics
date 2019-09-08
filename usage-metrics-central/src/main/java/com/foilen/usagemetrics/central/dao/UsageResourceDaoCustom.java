@@ -12,11 +12,15 @@ package com.foilen.usagemetrics.central.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.util.CloseableIterator;
+
 import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
 
 public interface UsageResourceDaoCustom {
 
     boolean existsFutureEntry(String hostname, String usageResourceType, Date timestamp, String ignoreBatchId);
+
+    CloseableIterator<UsageResourceExtended> findAtTime(Date timestamp);
 
     UsageResourceExtended findAtTime(Date timestamp, String hostname, String usageResourceType, String details);
 
