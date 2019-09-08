@@ -74,6 +74,7 @@ public class DiskSpaceGrabber extends AbstractBasics implements Grabber {
                             .setDetails(user.getHomeFolder());
                     ConsoleRunner consoleRunner = new ConsoleRunner();
                     consoleRunner.setCommand("/usr/bin/du");
+                    consoleRunner.addArguments("-B1");
                     consoleRunner.addArguments("-s", home);
                     Tuple2<String, String> out = consoleRunner.executeForStrings();
                     String duText = out.getA();
