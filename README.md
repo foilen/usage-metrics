@@ -107,6 +107,9 @@ _EOF
 docker run -ti --rm \
   --volume $PWD:/local \
   --volume /:/hostfs \
+  --volume /usr/bin/docker:/usr/bin/docker \
+  --volume /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.1:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
   --workdir /local \
   usage-metrics-agent:master-SNAPSHOT /local/_agent-config.json
 
