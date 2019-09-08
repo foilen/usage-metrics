@@ -48,6 +48,8 @@ docker run --rm --detach \
    
 # MongoShell
 docker exec -ti usage-mongo mongo
+	use usage
+	show collections
 
 ```
 

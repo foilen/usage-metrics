@@ -9,6 +9,10 @@
  */
 package com.foilen.usagemetrics.central;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -31,11 +35,18 @@ public class CentralApp extends AbstractBasics {
 
     public static void main(String[] args) {
 
+        List<String> arguments = new ArrayList<>(Arrays.asList(args));
+        List<String> springArguments = new ArrayList<>();
+
+        if (arguments.remove("--debug")) {
+            springArguments.add("--debug");
+        }
+
         String configFileName = null;
-        if (args.length == 1) {
+        if (arguments.size() == 1) {
             configFileName = args[0];
         }
-        if (args.length > 1) {
+        if (arguments.size() > 1) {
             System.err.println("Usage: [configFileName]");
             System.err.println("eg: config.json");
             System.exit(1);
@@ -61,7 +72,7 @@ public class CentralApp extends AbstractBasics {
                 CentralApp.class, //
                 MvcJsonSpringConfig.class //
         );
-        application.run();
+        application.run(springArguments.toArray(new String[springArguments.size()]));
     }
 
 }

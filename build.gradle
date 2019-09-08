@@ -3,9 +3,10 @@ buildscript {
     mavenLocal()
     jcenter()
   }
-  dependencies {
-    classpath 'io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE'
-  }
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.1.8.RELEASE'
 }
 
 allprojects {
@@ -33,12 +34,6 @@ subprojects {
 
   sourceCompatibility = 1.11
 
-  dependencyManagement {
-    imports {
-      mavenBom 'io.spring.platform:platform-bom:Cairo-SR8'
-    }
-  }
-  
   eclipse {
     classpath {
       downloadSources = true

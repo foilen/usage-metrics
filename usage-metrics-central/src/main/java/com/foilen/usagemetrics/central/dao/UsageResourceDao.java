@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 
 import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
 
-// TODO Add indexes
 @Repository
 public interface UsageResourceDao extends MongoRepository<UsageResourceExtended, String>, UsageResourceDaoCustom {
 

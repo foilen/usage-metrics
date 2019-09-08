@@ -1,18 +1,22 @@
 buildscript {
-    repositories {
-        jcenter()
-    }
+  repositories {
+    jcenter()
+  }
+}
+
+plugins {
+	id 'org.springframework.boot'
 }
 
 dependencies {
   compile project(':usage-metrics-common')
   
   // Spring
-  compile 'org.springframework.boot:spring-boot-starter-web:2.1.7.RELEASE'
+  compile 'org.springframework.boot:spring-boot-starter-web'
   
   // Mongo
   compile 'org.mongodb:mongo-java-driver:3.11.0'
-  compile 'org.springframework.data:spring-data-mongodb:2.0.14.RELEASE'
+  compile 'org.springframework.data:spring-data-mongodb'
   
   // Tests
   testCompileOnly 'junit:junit:4.12'
@@ -28,3 +32,11 @@ test {
 apply plugin: 'application'
 
 mainClassName = 'com.foilen.usagemetrics.central.CentralApp'
+
+jar {
+	enabled = true
+}
+
+bootJar {
+	classifier = 'boot'
+}
