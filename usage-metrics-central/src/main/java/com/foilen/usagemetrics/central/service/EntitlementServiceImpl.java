@@ -64,6 +64,11 @@ public class EntitlementServiceImpl extends AbstractBasics implements Entitlemen
     }
 
     private boolean isApiUser(String authUser, String authKey) {
+
+        if (authUser == null || authKey == null) {
+            return false;
+        }
+
         Optional<ApiUser> apiUser = apiUserDao.findById(authUser);
         if (apiUser.isEmpty()) {
             return false;
