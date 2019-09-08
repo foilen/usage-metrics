@@ -65,6 +65,28 @@ docker exec -i usage-mongo mongo << _EOF
   db.apiUser.find()
 _EOF
 
+# Add owner
+docker exec -i usage-mongo mongo << _EOF
+  use usage
+  db.ownerMapping.update({_id: 'infra'}, 
+  	{_id: 'infra', ownerUsageResourceMappings: [] }, 
+  	{upsert: true})
+_EOF
+
+# Add Mapping
+docker exec -i usage-mongo mongo << _EOF
+  use usage
+  db.ownerMapping.update({_id: 'infra'}, 
+  	{ \$push: {ownerUsageResourceMappings: {type: 'localDisk', owner: 'infra_web'} } }
+  )
+_EOF
+ 
+# Show all Mapping 
+docker exec -i usage-mongo mongo << _EOF
+  use usage
+  db.ownerMapping.find().pretty()
+_EOF
+
 ```
 
 ## Agent
@@ -108,4 +130,12 @@ docker run -ti --rm \
   --workdir /local \
   usage-metrics-central:master-SNAPSHOT /local/_central-config.json
 
+```
+
+## Get the report
+
+```
+curl http://127.0.0.1:8080/report/showReport \
+	--header "Content-Type: application/json" \
+	-X POST --data '{ "authUser": "test", "authKey": "test" }'
 ```
