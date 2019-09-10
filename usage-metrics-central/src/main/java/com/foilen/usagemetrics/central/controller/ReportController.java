@@ -10,10 +10,10 @@
 package com.foilen.usagemetrics.central.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.foilen.smalltools.restapi.model.ApiError;
 import com.foilen.smalltools.tools.AbstractBasics;
@@ -22,7 +22,7 @@ import com.foilen.usagemetrics.central.service.ReportService;
 import com.foilen.usagemetrics.common.api.form.ReportShowForm;
 import com.foilen.usagemetrics.common.api.model.ReportShowResult;
 
-@Controller
+@RestController
 @RequestMapping("report")
 public class ReportController extends AbstractBasics {
 
