@@ -15,7 +15,7 @@ dependencies {
 
   // Tools
   compile 'com.google.guava:guava:28.0-jre'
-  
+
   // For jl-smalltools
   compile 'ch.qos.logback:logback-classic:1.2.3'
   compile 'com.foilen:jl-smalltools:0.47.1'
@@ -23,10 +23,10 @@ dependencies {
   compile "javax.xml.bind:jaxb-api:2.3.1"
   compile 'org.apache.commons:commons-lang3:3.6'
   compile 'org.slf4j:slf4j-api:1.7.25'
-  
+
   // For API
   compile 'org.springframework:spring-web:5.0.13.RELEASE'
-  
+
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -55,7 +55,7 @@ bintray {
     userOrg = 'foilen'
     name = 'com.foilen:usage-metrics-api'
     licenses = ['MIT']
-    vcsUrl = 'git@github.com:foilen/usage-metrics.git'
+    vcsUrl = 'https://github.com/foilen/usage-metrics'
   }
 
   publications = ['MyPublication']
@@ -72,4 +72,3 @@ publishing {
     }
   }
 }
-
