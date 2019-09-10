@@ -4,6 +4,13 @@ buildscript {
   }
 }
 
+plugins {
+  id "com.jfrog.bintray" version "1.8.4"
+}
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
 dependencies {
 
   // Tools
@@ -21,3 +28,48 @@ dependencies {
   compile 'org.springframework:spring-web:5.0.13.RELEASE'
   
 }
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives sourcesJar
+  archives javadocJar
+}
+
+bintray {
+  user = System.getenv('BINTRAY_USER')
+  key = System.getenv('BINTRAY_KEY')
+
+  publish = true
+
+  pkg {
+    repo = 'maven'
+    userOrg = 'foilen'
+    name = 'com.foilen:usage-metrics-api'
+    licenses = ['MIT']
+    vcsUrl = 'git@github.com:foilen/usage-metrics.git'
+  }
+
+  publications = ['MyPublication']
+}
+
+publishing {
+  publications {
+    MyPublication(MavenPublication) {
+      from components.java
+      artifact sourcesJar
+      artifact javadocJar
+      groupId 'com.foilen'
+      artifactId 'usage-metrics-api'
+    }
+  }
+}
+

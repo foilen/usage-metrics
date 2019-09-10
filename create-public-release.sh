@@ -19,6 +19,7 @@ cd $RUN_PATH
 
 ./step-update-copyrights.sh
 ./step-clean-compile.sh
+./step-upload-bintray.sh
 ./step-create-docker-image.sh
 ./step-upload-docker-image.sh
 ./step-git-tag.sh
