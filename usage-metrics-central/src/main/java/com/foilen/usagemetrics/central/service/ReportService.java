@@ -11,7 +11,7 @@ package com.foilen.usagemetrics.central.service;
 
 import java.util.Date;
 
-import com.foilen.usagemetrics.common.api.model.ReportShowResult;
+import com.foilen.usagemetrics.api.model.ReportShowResult;
 
 public interface ReportService {
 

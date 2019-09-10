@@ -19,12 +19,12 @@ import org.springframework.stereotype.Service;
 import com.foilen.smalltools.restapi.model.ApiError;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.CollectionsTools;
+import com.foilen.usagemetrics.api.model.ReportForOwner;
+import com.foilen.usagemetrics.api.model.ReportShowResult;
 import com.foilen.usagemetrics.central.dao.OwnerMappingDao;
 import com.foilen.usagemetrics.central.dao.UsageResourceDao;
 import com.foilen.usagemetrics.central.dao.domain.OwnerMapping;
 import com.foilen.usagemetrics.central.dao.domain.model.OwnerUsageResourceMapping;
-import com.foilen.usagemetrics.common.api.model.ReportForOwner;
-import com.foilen.usagemetrics.common.api.model.ReportShowResult;
 
 @Service
 public class ReportServiceImpl extends AbstractBasics implements ReportService {

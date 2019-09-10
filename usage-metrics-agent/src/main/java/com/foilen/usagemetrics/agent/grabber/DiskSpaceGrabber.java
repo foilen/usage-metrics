@@ -19,7 +19,7 @@ import com.foilen.smalltools.tuple.Tuple2;
 import com.foilen.usagemetrics.agent.AgentApp;
 import com.foilen.usagemetrics.agent.services.UnixUsersAndGroupsUtils;
 import com.foilen.usagemetrics.agent.services.UnixUsersAndGroupsUtilsImpl;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
+import com.foilen.usagemetrics.api.model.UsageResource;
 
 public class DiskSpaceGrabber extends AbstractBasics implements Grabber {
 

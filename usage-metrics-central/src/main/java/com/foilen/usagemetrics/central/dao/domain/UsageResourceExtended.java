@@ -15,7 +15,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.foilen.smalltools.tools.DateTools;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
+import com.foilen.usagemetrics.api.model.UsageResource;
 
 @Document(collection = "usageResource")
 public class UsageResourceExtended extends UsageResource {

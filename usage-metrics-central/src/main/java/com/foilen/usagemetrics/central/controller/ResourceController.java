@@ -19,9 +19,9 @@ import com.foilen.smalltools.restapi.model.ApiError;
 import com.foilen.smalltools.restapi.model.FormResult;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.JsonTools;
+import com.foilen.usagemetrics.api.form.ResourcesAddForm;
 import com.foilen.usagemetrics.central.service.EntitlementService;
 import com.foilen.usagemetrics.central.service.UsageResourceService;
-import com.foilen.usagemetrics.common.api.form.ResourcesAddForm;
 
 @RestController
 @RequestMapping("resource")

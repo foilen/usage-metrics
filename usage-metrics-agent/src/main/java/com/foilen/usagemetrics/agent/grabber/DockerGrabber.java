@@ -20,7 +20,7 @@ import com.foilen.smalltools.tools.FileTools;
 import com.foilen.usagemetrics.agent.AgentApp;
 import com.foilen.usagemetrics.agent.services.DockerUtils;
 import com.foilen.usagemetrics.agent.services.DockerUtilsImpl;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
+import com.foilen.usagemetrics.api.model.UsageResource;
 
 public class DockerGrabber extends AbstractBasics implements Grabber {
 

@@ -1,3 +1,4 @@
 include 'usage-metrics-common'
 include 'usage-metrics-agent'
+include 'usage-metrics-api'
 include 'usage-metrics-central'

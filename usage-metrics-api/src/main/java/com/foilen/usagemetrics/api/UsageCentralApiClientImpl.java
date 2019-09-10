@@ -7,7 +7,7 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.usagemetrics.common.api;
+package com.foilen.usagemetrics.api;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.foilen.smalltools.restapi.model.FormResult;
 import com.foilen.smalltools.tools.AbstractBasics;
-import com.foilen.usagemetrics.common.api.form.AbstractAuthApiBase;
-import com.foilen.usagemetrics.common.api.form.ResourcesAddForm;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
+import com.foilen.usagemetrics.api.form.AbstractAuthApiBase;
+import com.foilen.usagemetrics.api.form.ResourcesAddForm;
+import com.foilen.usagemetrics.api.model.UsageResource;
 
 public class UsageCentralApiClientImpl extends AbstractBasics {
 

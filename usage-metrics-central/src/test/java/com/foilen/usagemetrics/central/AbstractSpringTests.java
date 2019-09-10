@@ -18,10 +18,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.foilen.usagemetrics.api.model.UsageResource;
 import com.foilen.usagemetrics.central.dao.OwnerMappingDao;
 import com.foilen.usagemetrics.central.dao.UsageResourceDao;
 import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

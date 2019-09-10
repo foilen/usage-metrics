@@ -11,7 +11,7 @@ package com.foilen.usagemetrics.central.service;
 
 import java.util.List;
 
-import com.foilen.usagemetrics.common.api.model.UsageResource;
+import com.foilen.usagemetrics.api.model.UsageResource;
 
 public interface UsageResourceService {
 

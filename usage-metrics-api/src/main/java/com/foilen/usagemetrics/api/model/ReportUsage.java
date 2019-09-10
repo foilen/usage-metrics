@@ -7,7 +7,7 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.usagemetrics.common.api.model;
+package com.foilen.usagemetrics.api.model;
 
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 

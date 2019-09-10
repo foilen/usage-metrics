@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.foilen.smalltools.restapi.model.ApiError;
 import com.foilen.smalltools.tools.AbstractBasics;
+import com.foilen.usagemetrics.api.form.ReportShowForm;
+import com.foilen.usagemetrics.api.model.ReportShowResult;
 import com.foilen.usagemetrics.central.service.EntitlementService;
 import com.foilen.usagemetrics.central.service.ReportService;
-import com.foilen.usagemetrics.common.api.form.ReportShowForm;
-import com.foilen.usagemetrics.common.api.model.ReportShowResult;
 
 @RestController
 @RequestMapping("report")

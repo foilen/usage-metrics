@@ -7,7 +7,7 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.usagemetrics.common.api.form;
+package com.foilen.usagemetrics.api.form;
 
 import java.util.Date;
 

@@ -12,7 +12,7 @@ package com.foilen.usagemetrics.agent.dao.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.foilen.usagemetrics.common.api.model.UsageResource;
+import com.foilen.usagemetrics.api.model.UsageResource;
 
 public class UsageResourcesList {
 

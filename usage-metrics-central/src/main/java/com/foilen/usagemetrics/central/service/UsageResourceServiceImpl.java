@@ -24,10 +24,10 @@ import com.foilen.smalltools.tools.DateTools;
 import com.foilen.smalltools.tools.JsonTools;
 import com.foilen.smalltools.tools.StringTools;
 import com.foilen.smalltools.tuple.Tuple2;
+import com.foilen.usagemetrics.api.model.UsageResource;
 import com.foilen.usagemetrics.central.dao.UsageResourceDao;
 import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
 import com.foilen.usagemetrics.common.UsageMetricException;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
 
 @Service
 public class UsageResourceServiceImpl extends AbstractBasics implements UsageResourceService {

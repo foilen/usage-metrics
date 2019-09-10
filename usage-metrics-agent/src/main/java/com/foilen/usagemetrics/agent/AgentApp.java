@@ -27,8 +27,8 @@ import com.foilen.usagemetrics.agent.grabber.GitlabGrabber;
 import com.foilen.usagemetrics.agent.grabber.Grabber;
 import com.foilen.usagemetrics.agent.grabber.JamesGrabber;
 import com.foilen.usagemetrics.agent.grabber.MatomoGrabber;
-import com.foilen.usagemetrics.common.api.UsageCentralApiClientImpl;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
+import com.foilen.usagemetrics.api.UsageCentralApiClientImpl;
+import com.foilen.usagemetrics.api.model.UsageResource;
 
 public class AgentApp extends AbstractBasics {
 

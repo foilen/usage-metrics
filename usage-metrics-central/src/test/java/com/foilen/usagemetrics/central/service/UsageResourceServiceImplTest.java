@@ -20,10 +20,10 @@ import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.foilen.smalltools.tools.ResourceTools;
+import com.foilen.usagemetrics.api.model.UsageResource;
 import com.foilen.usagemetrics.central.AbstractSpringTests;
 import com.foilen.usagemetrics.central.dao.UsageResourceDao;
 import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
-import com.foilen.usagemetrics.common.api.model.UsageResource;
 
 public class UsageResourceServiceImplTest extends AbstractSpringTests {
 
