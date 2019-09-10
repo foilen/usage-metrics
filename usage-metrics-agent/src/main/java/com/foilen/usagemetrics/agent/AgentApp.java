@@ -27,6 +27,7 @@ import com.foilen.usagemetrics.agent.grabber.GitlabGrabber;
 import com.foilen.usagemetrics.agent.grabber.Grabber;
 import com.foilen.usagemetrics.agent.grabber.JamesGrabber;
 import com.foilen.usagemetrics.agent.grabber.MatomoGrabber;
+import com.foilen.usagemetrics.api.UsageCentralApiClient;
 import com.foilen.usagemetrics.api.UsageCentralApiClientImpl;
 import com.foilen.usagemetrics.api.model.UsageResource;
 
@@ -70,7 +71,7 @@ public class AgentApp extends AbstractBasics {
         }
 
         UsageResourcesToSendDao usageResourcesToSendDao = new UsageResourcesToSendDao(new File("_usageResourcesToSend.json"));
-        UsageCentralApiClientImpl usageCentralApiClient = new UsageCentralApiClientImpl(agentConfig.getCentralUri(), agentConfig.getHostname(), agentConfig.getHostnameKey());
+        UsageCentralApiClient usageCentralApiClient = new UsageCentralApiClientImpl(agentConfig.getCentralUri(), agentConfig.getHostname(), agentConfig.getHostnameKey());
 
         // Start the grabbers
         List<Grabber> grabbers = Arrays.asList( //

@@ -9,6 +9,7 @@
  */
 package com.foilen.usagemetrics.api;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.client.RestTemplate;
@@ -16,10 +17,12 @@ import org.springframework.web.client.RestTemplate;
 import com.foilen.smalltools.restapi.model.FormResult;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.usagemetrics.api.form.AbstractAuthApiBase;
+import com.foilen.usagemetrics.api.form.ReportShowForm;
 import com.foilen.usagemetrics.api.form.ResourcesAddForm;
+import com.foilen.usagemetrics.api.model.ReportShowResult;
 import com.foilen.usagemetrics.api.model.UsageResource;
 
-public class UsageCentralApiClientImpl extends AbstractBasics {
+public class UsageCentralApiClientImpl extends AbstractBasics implements UsageCentralApiClient {
 
     private String centralUri;
     private String authUser;
@@ -42,6 +45,14 @@ public class UsageCentralApiClientImpl extends AbstractBasics {
         return auth;
     }
 
+    @Override
+    public ReportShowResult reportShow(Date forDate) {
+        ReportShowForm form = addAuth(new ReportShowForm()) //
+                .setForDate(forDate);
+        return restTemplate.postForObject(centralUri + "/report/showReport", form, ReportShowResult.class);
+    }
+
+    @Override
     public FormResult resourceAdd(List<UsageResource> usageResources) {
         ResourcesAddForm form = addAuth(new ResourcesAddForm()) //
                 .setUsageResources(usageResources);
