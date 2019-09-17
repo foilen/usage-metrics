@@ -99,7 +99,17 @@ cat > _agent-config.json << _EOF
   "hostname" : "h1.example.com",
   "hostnameKey" : "F5AAB679C",
 
-  "diskSpaceRootFs" : "/hostfs/"
+  "diskSpaceRootFs" : "/hostfs/",
+  
+  "jamesDatabases" : [
+  	{
+	  	"host" : "127.0.0.1",
+	  	"port" : 3306,
+	  	"dbName" : "james",
+	  	"dbUser" : "james",
+	  	"dbPassword" : "qwerty"
+	  }
+  ]
 }
 _EOF
 

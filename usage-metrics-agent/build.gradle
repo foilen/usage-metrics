@@ -8,6 +8,9 @@ buildscript {
 dependencies {
   compile project(':usage-metrics-common')
   
+  compile 'org.mariadb.jdbc:mariadb-java-client:2.4.4' 
+  compile 'org.springframework.boot:spring-boot-starter-jdbc:2.1.8.RELEASE' 
+  
   // Tests
   testCompileOnly 'junit:junit:4.12'
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"

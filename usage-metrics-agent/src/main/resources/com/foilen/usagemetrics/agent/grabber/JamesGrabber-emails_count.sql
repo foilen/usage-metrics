@@ -1,0 +1,2 @@
+SELECT count(*) 
+FROM `JAMES_MAIL`

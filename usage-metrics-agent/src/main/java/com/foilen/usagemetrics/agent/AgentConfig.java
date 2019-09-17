@@ -9,6 +9,9 @@
  */
 package com.foilen.usagemetrics.agent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.foilen.smalltools.JavaEnvironmentValues;
 import com.foilen.smalltools.tools.AbstractBasics;
 
@@ -19,6 +22,8 @@ public class AgentConfig extends AbstractBasics {
     private String hostnameKey;
 
     private String diskSpaceRootFs = "/";
+
+    private List<DatabaseInfo> jamesDatabases = new ArrayList<>();
 
     public String getCentralUri() {
         return centralUri;
@@ -36,6 +41,10 @@ public class AgentConfig extends AbstractBasics {
         return hostnameKey;
     }
 
+    public List<DatabaseInfo> getJamesDatabases() {
+        return jamesDatabases;
+    }
+
     public void setCentralUri(String centralUri) {
         this.centralUri = centralUri;
     }
@@ -50,6 +59,10 @@ public class AgentConfig extends AbstractBasics {
 
     public void setHostnameKey(String hostnameKey) {
         this.hostnameKey = hostnameKey;
+    }
+
+    public void setJamesDatabases(List<DatabaseInfo> jamesDatabases) {
+        this.jamesDatabases = jamesDatabases;
     }
 
 }

@@ -10,7 +10,7 @@
 package com.foilen.usagemetrics.agent;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,10 +23,8 @@ import com.foilen.smalltools.tools.ThreadTools;
 import com.foilen.usagemetrics.agent.dao.UsageResourcesToSendDao;
 import com.foilen.usagemetrics.agent.grabber.DiskSpaceGrabber;
 import com.foilen.usagemetrics.agent.grabber.DockerGrabber;
-import com.foilen.usagemetrics.agent.grabber.GitlabGrabber;
 import com.foilen.usagemetrics.agent.grabber.Grabber;
 import com.foilen.usagemetrics.agent.grabber.JamesGrabber;
-import com.foilen.usagemetrics.agent.grabber.MatomoGrabber;
 import com.foilen.usagemetrics.api.UsageCentralApiClient;
 import com.foilen.usagemetrics.api.UsageCentralApiClientImpl;
 import com.foilen.usagemetrics.api.model.UsageResource;
@@ -74,13 +72,10 @@ public class AgentApp extends AbstractBasics {
         UsageCentralApiClient usageCentralApiClient = new UsageCentralApiClientImpl(agentConfig.getCentralUri(), agentConfig.getHostname(), agentConfig.getHostnameKey());
 
         // Start the grabbers
-        List<Grabber> grabbers = Arrays.asList( //
-                new DiskSpaceGrabber(), //
-                new DockerGrabber(), //
-                new GitlabGrabber(), //
-                new JamesGrabber(), //
-                new MatomoGrabber() //
-        );
+        List<Grabber> grabbers = new ArrayList<>();
+        grabbers.add(new DiskSpaceGrabber());
+        grabbers.add(new DockerGrabber());
+        agentConfig.getJamesDatabases().forEach(db -> grabbers.add(new JamesGrabber(db)));
 
         boolean shouldRun = true;
         long lastRun = 0;
