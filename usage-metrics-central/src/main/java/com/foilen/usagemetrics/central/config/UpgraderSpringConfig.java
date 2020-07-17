@@ -19,8 +19,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.foilen.smalltools.upgrader.UpgraderTools;
 import com.foilen.smalltools.upgrader.tasks.UpgradeTask;
-import com.foilen.smalltools.upgrader.trackers.MongoDbUpgraderTracker;
 import com.foilen.smalltools.upgrader.trackers.UpgraderTracker;
+import com.foilen.usagemetrics.central.upgrader.MongoDb4UpgraderTracker;
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
 
@@ -36,7 +36,7 @@ public class UpgraderSpringConfig implements WebMvcConfigurer {
     @Bean
     public UpgraderTracker mongodbUpgraderTracker() {
         ConnectionString connectionString = new ConnectionString(mongoUri);
-        return new MongoDbUpgraderTracker(mongoClient, connectionString.getDatabase());
+        return new MongoDb4UpgraderTracker(mongoClient, connectionString.getDatabase());
     }
 
     @Bean

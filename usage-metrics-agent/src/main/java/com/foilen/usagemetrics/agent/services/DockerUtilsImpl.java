@@ -18,7 +18,7 @@ import java.util.List;
 import com.foilen.smalltools.consolerunner.ConsoleRunner;
 import com.foilen.smalltools.iterable.FileLinesIterable;
 import com.foilen.smalltools.tools.AbstractBasics;
-import com.foilen.smalltools.tools.SpaceConverterTool;
+import com.foilen.smalltools.tools.SpaceConverterTools;
 import com.foilen.usagemetrics.agent.services.model.DockerPs;
 import com.foilen.usagemetrics.agent.services.model.DockerPsStatus;
 
@@ -78,7 +78,7 @@ public class DockerUtilsImpl extends AbstractBasics implements DockerUtils {
 
             String instanceSizePart = sizeParts[0];
             try {
-                long instanceSize = SpaceConverterTool.convertToBytes(instanceSizePart);
+                long instanceSize = SpaceConverterTools.convertToBytes(instanceSizePart);
                 dockerPs.setSize(instanceSize);
             } catch (Exception e) {
                 logger.warn("Could not convert {}", instanceSizePart, e);
@@ -86,7 +86,7 @@ public class DockerUtilsImpl extends AbstractBasics implements DockerUtils {
 
             String totalSizePart = sizeParts[1].split("\\)")[0];
             try {
-                long totalSize = SpaceConverterTool.convertToBytes(totalSizePart);
+                long totalSize = SpaceConverterTools.convertToBytes(totalSizePart);
                 dockerPs.setTotalSize(totalSize);
             } catch (Exception e) {
                 logger.warn("Could not convert {}", totalSizePart, e);

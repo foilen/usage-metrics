@@ -5,7 +5,7 @@ buildscript {
 }
 
 plugins {
-  id "com.jfrog.bintray" version "1.8.4"
+  id "com.jfrog.bintray" version "1.8.5"
 }
 
 apply plugin: 'maven'
@@ -14,18 +14,18 @@ apply plugin: 'maven-publish'
 dependencies {
 
   // Tools
-  compile 'com.google.guava:guava:28.0-jre'
+  compile 'com.google.guava:guava:29.0-jre'
 
   // For jl-smalltools
   compile 'ch.qos.logback:logback-classic:1.2.3'
-  compile 'com.foilen:jl-smalltools:0.47.1'
-  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.1'
+  compile 'com.foilen:jl-smalltools:0.53.0'
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
   compile "javax.xml.bind:jaxb-api:2.3.1"
-  compile 'org.apache.commons:commons-lang3:3.6'
-  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'org.apache.commons:commons-lang3:3.10'
+  compile 'org.slf4j:slf4j-api:1.7.30'
 
   // For API
-  compile 'org.springframework:spring-web:5.0.13.RELEASE'
+  compile 'org.springframework:spring-web:5.2.7.RELEASE'
 
 }
 

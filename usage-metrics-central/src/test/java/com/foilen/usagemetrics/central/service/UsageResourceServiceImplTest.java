@@ -14,9 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.foilen.smalltools.tools.ResourceTools;
@@ -24,6 +22,7 @@ import com.foilen.usagemetrics.api.model.UsageResource;
 import com.foilen.usagemetrics.central.AbstractSpringTests;
 import com.foilen.usagemetrics.central.dao.UsageResourceDao;
 import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
+import com.foilen.usagemetrics.common.UsageMetricException;
 
 public class UsageResourceServiceImplTest extends AbstractSpringTests {
 
@@ -31,9 +30,6 @@ public class UsageResourceServiceImplTest extends AbstractSpringTests {
     private UsageResourceDao usageResourceDao;
     @Autowired
     private UsageResourceService usageResourceService;
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     private void assertResourceStories() {
         assertResourceStory("h1", "DiskSpace");
@@ -219,10 +215,10 @@ public class UsageResourceServiceImplTest extends AbstractSpringTests {
 
     @Test
     public void testAddResource_inReverseOrder_notAllowed() {
-        expectedException.expectMessage("Insertion of older entries is not allowed");
-
-        usageResourceService.addUsageResource("h1", t3h1());
-        usageResourceService.addUsageResource("h1", t2h1());
+        Assert.assertThrows("Insertion of older entries is not allowed", UsageMetricException.class, () -> {
+            usageResourceService.addUsageResource("h1", t3h1());
+            usageResourceService.addUsageResource("h1", t2h1());
+        });
     }
 
 }
