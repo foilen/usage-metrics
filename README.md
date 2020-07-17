@@ -152,3 +152,7 @@ curl http://127.0.0.1:8080/report/showReport \
 	--header "Content-Type: application/json" \
 	-X POST --data '{ "authUser": "test", "authKey": "test" }'
 ```
+
+## Swagger
+
+You can see the API documentation here: http://localhost:8080/swagger-ui/index.html

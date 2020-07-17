@@ -12,6 +12,9 @@ dependencies {
   compile project(':usage-metrics-common')
   
   // Spring
+  //compile "io.springfox:springfox-swagger-ui:$springFoxSwaggerVersion"
+  //compile "io.springfox:springfox-swagger2:$springFoxSwaggerVersion"
+  compile 'io.springfox:springfox-boot-starter:3.0.0'
   compile 'org.springframework.boot:spring-boot-starter-web'
   
   // Mongo
