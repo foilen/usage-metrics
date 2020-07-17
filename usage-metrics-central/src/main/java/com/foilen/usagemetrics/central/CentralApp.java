@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.foilen.smalltools.restapi.spring.MvcJsonSpringConfig;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.JsonTools;
 import com.foilen.usagemetrics.central.config.SwaggerSpringConfig;
@@ -71,7 +70,7 @@ public class CentralApp extends AbstractBasics {
         System.setProperty("spring.data.mongodb.uri", centralConfig.getMongoUri());
         SpringApplication application = new SpringApplication( //
                 CentralApp.class, //
-                MvcJsonSpringConfig.class, //
+                // MvcJsonSpringConfig.class, //
                 SwaggerSpringConfig.class //
         );
         application.run(springArguments.toArray(new String[springArguments.size()]));
