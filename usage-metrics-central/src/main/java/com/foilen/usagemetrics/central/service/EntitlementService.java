@@ -9,10 +9,12 @@
  */
 package com.foilen.usagemetrics.central.service;
 
+import com.foilen.usagemetrics.central.dao.domain.ApiUser;
+
 public interface EntitlementService {
 
-    boolean hostCanAddResources(String authUser, String authKey);
+    String deriveHostnameKey(String username);
 
-    boolean reportCanShow(String authUser, String authKey);
+    ApiUser getApiUser(String username);
 
 }

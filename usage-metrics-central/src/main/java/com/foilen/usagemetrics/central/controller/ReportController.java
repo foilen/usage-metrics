@@ -10,35 +10,28 @@
 package com.foilen.usagemetrics.central.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foilen.smalltools.restapi.model.ApiError;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.usagemetrics.api.form.ReportShowForm;
 import com.foilen.usagemetrics.api.model.ReportShowResult;
-import com.foilen.usagemetrics.central.service.EntitlementService;
+import com.foilen.usagemetrics.central.security.ApiUsersUserDetailsService;
 import com.foilen.usagemetrics.central.service.ReportService;
 
 @RestController
 @RequestMapping("report")
+@Secured(ApiUsersUserDetailsService.ROLE_API_USER)
 public class ReportController extends AbstractBasics {
 
-    @Autowired
-    private EntitlementService entitlementService;
     @Autowired
     private ReportService reportService;
 
     @PostMapping("/showReport")
     public ReportShowResult showReport(@RequestBody ReportShowForm form) {
-        if (!entitlementService.reportCanShow(form.getAuthUser(), form.getAuthKey())) {
-            ReportShowResult result = new ReportShowResult();
-            result.setError(new ApiError("The auth is invalid"));
-            return result;
-        }
-
         return reportService.getReport(form.getForDate());
     }
 

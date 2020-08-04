@@ -9,13 +9,13 @@
  */
 package com.foilen.usagemetrics.central.dao.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.foilen.usagemetrics.central.dao.domain.model.OwnerUsageResourceMapping;
+import com.foilen.usagemetrics.api.model.OwnerUsageResourceMapping;
 
 @Document
 public class OwnerMapping {
@@ -24,7 +24,12 @@ public class OwnerMapping {
     private String ownerName;
     private String comment;
 
-    private List<OwnerUsageResourceMapping> ownerUsageResourceMappings = new ArrayList<>();
+    private SortedSet<OwnerUsageResourceMapping> ownerUsageResourceMappings = new TreeSet<>();
+
+    public OwnerMapping addOwnerUsageResourceMappings(OwnerUsageResourceMapping ownerUsageResourceMapping) {
+        ownerUsageResourceMappings.add(ownerUsageResourceMapping);
+        return this;
+    }
 
     public String getComment() {
         return comment;
@@ -34,7 +39,7 @@ public class OwnerMapping {
         return ownerName;
     }
 
-    public List<OwnerUsageResourceMapping> getOwnerUsageResourceMappings() {
+    public SortedSet<OwnerUsageResourceMapping> getOwnerUsageResourceMappings() {
         return ownerUsageResourceMappings;
     }
 
@@ -48,7 +53,7 @@ public class OwnerMapping {
         return this;
     }
 
-    public OwnerMapping setOwnerUsageResourceMappings(List<OwnerUsageResourceMapping> ownerUsageResourceMappings) {
+    public OwnerMapping setOwnerUsageResourceMappings(SortedSet<OwnerUsageResourceMapping> ownerUsageResourceMappings) {
         this.ownerUsageResourceMappings = ownerUsageResourceMappings;
         return this;
     }

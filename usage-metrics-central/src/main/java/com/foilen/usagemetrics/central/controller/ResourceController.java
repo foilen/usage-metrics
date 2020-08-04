@@ -10,39 +10,34 @@
 package com.foilen.usagemetrics.central.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foilen.smalltools.restapi.model.ApiError;
 import com.foilen.smalltools.restapi.model.FormResult;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.JsonTools;
 import com.foilen.usagemetrics.api.form.ResourcesAddForm;
-import com.foilen.usagemetrics.central.service.EntitlementService;
+import com.foilen.usagemetrics.central.security.ApiUsersUserDetailsService;
 import com.foilen.usagemetrics.central.service.UsageResourceService;
 
 @RestController
 @RequestMapping("resource")
+@Secured(ApiUsersUserDetailsService.ROLE_HOST)
 public class ResourceController extends AbstractBasics {
 
-    @Autowired
-    private EntitlementService entitlementService;
     @Autowired
     private UsageResourceService usageResourceService;
 
     @PostMapping("/")
-    public FormResult addResources(@RequestBody ResourcesAddForm form) {
-        FormResult result = new FormResult();
-        if (!entitlementService.hostCanAddResources(form.getAuthUser(), form.getAuthKey())) {
-            result.setError(new ApiError("The host does not have the right key"));
-            return result;
-        }
-
-        logger.info("Hostname: {} -> Usage Resources: {}", form.getAuthUser(), JsonTools.compactPrintWithoutNulls(form.getUsageResources()));
-        usageResourceService.addUsageResource(form.getAuthUser(), form.getUsageResources());
-        return result;
+    public FormResult addResources(@AuthenticationPrincipal User user, @RequestBody ResourcesAddForm form) {
+        logger.info("Hostname: {} -> Usage Resources: {}", user.getUsername(), JsonTools.compactPrintWithoutNulls(form.getUsageResources()));
+        usageResourceService.addUsageResource(user.getUsername(), form.getUsageResources());
+        return new FormResult();
     }
 
 }

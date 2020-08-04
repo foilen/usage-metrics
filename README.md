@@ -133,12 +133,13 @@ cat > _central-config.json << _EOF
 {
   "hostKeySalt" : "KFJeufjf773jf",
 
-  "mongoUri" : "mongodb://172.17.0.2:27017/usage"
+  "mongoUri" : "mongodb://172.17.0.1:27017/usage"
 }
 _EOF
 
 # Start
 docker run -ti --rm \
+  --publish 8080:8080 \
   --volume $PWD:/local \
   --workdir /local \
   usage-metrics-central:master-SNAPSHOT /local/_central-config.json
@@ -148,11 +149,15 @@ docker run -ti --rm \
 ## Get the report
 
 ```
-curl http://127.0.0.1:8080/report/showReport \
+curl http://test:test@127.0.0.1:8080/report/showReport \
 	--header "Content-Type: application/json" \
-	-X POST --data '{ "authUser": "test", "authKey": "test" }'
+	-X POST --data '{}' ; echo
 ```
 
 ## Swagger
 
 You can see the API documentation here: http://localhost:8080/swagger-ui/index.html
+
+## Test the API
+
+In Eclipse, run `TestApiApp.launch`

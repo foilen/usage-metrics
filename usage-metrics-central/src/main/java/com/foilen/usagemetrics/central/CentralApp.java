@@ -70,9 +70,9 @@ public class CentralApp extends AbstractBasics {
         System.setProperty("spring.data.mongodb.uri", centralConfig.getMongoUri());
         SpringApplication application = new SpringApplication( //
                 CentralApp.class, //
-                // MvcJsonSpringConfig.class, //
                 SwaggerSpringConfig.class //
         );
+
         application.run(springArguments.toArray(new String[springArguments.size()]));
     }
 

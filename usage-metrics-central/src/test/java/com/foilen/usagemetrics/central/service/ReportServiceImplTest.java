@@ -15,9 +15,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.foilen.smalltools.test.asserts.AssertTools;
+import com.foilen.usagemetrics.api.model.OwnerUsageResourceMapping;
 import com.foilen.usagemetrics.central.AbstractSpringTests;
 import com.foilen.usagemetrics.central.dao.domain.OwnerMapping;
-import com.foilen.usagemetrics.central.dao.domain.model.OwnerUsageResourceMapping;
 
 public class ReportServiceImplTest extends AbstractSpringTests {
 

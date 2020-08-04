@@ -1,0 +1,29 @@
+{
+  "items" : [ {
+    "ownerName" : "alpha",
+    "ownerUsageResourceMappings" : [ {
+      "owner" : "bbb",
+      "type" : "DiskUsage"
+    }, {
+      "owner" : "ccc",
+      "type" : "DiskUsage"
+    }, {
+      "owner" : "bbb",
+      "type" : "Docker"
+    }, {
+      "owner" : "ccc",
+      "type" : "Docker"
+    } ]
+  }, {
+    "comment" : "All the infrastructure stuff",
+    "ownerName" : "infra",
+    "ownerUsageResourceMappings" : [ {
+      "owner" : "infra_aaa",
+      "type" : "DiskUsage"
+    }, {
+      "owner" : "infra_aaa",
+      "type" : "Docker"
+    } ]
+  } ],
+  "success" : true
+}

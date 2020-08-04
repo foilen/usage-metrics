@@ -9,7 +9,6 @@
  */
 package com.foilen.usagemetrics.central.service;
 
-import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import com.foilen.smalltools.hash.HashSha256;
 import com.foilen.smalltools.tools.AbstractBasics;
-import com.foilen.smalltools.tools.StringTools;
 import com.foilen.usagemetrics.central.CentralApp;
 import com.foilen.usagemetrics.central.dao.ApiUserDao;
 import com.foilen.usagemetrics.central.dao.domain.ApiUser;
@@ -46,7 +44,8 @@ public class EntitlementServiceImpl extends AbstractBasics implements Entitlemen
         keyByHostname.invalidateAll();
     }
 
-    protected String deriveHostnameKey(String hostname) {
+    @Override
+    public String deriveHostnameKey(String hostname) {
         String hostKeySalt = CentralApp.getCentralConfig().getHostKeySalt();
         if (hostKeySalt == null) {
             return null;
@@ -59,29 +58,8 @@ public class EntitlementServiceImpl extends AbstractBasics implements Entitlemen
     }
 
     @Override
-    public boolean hostCanAddResources(String authUser, String authKey) {
-        return StringTools.safeEquals(deriveHostnameKey(authUser), authKey);
-    }
-
-    private boolean isApiUser(String authUser, String authKey) {
-
-        if (authUser == null || authKey == null) {
-            return false;
-        }
-
-        Optional<ApiUser> apiUser = apiUserDao.findById(authUser);
-        if (apiUser.isEmpty()) {
-            return false;
-        }
-
-        String expectedAuthKeyHash = HashSha256.hashString(authKey);
-
-        return StringTools.safeEquals(apiUser.get().getAuthPasswordHash(), expectedAuthKeyHash);
-    }
-
-    @Override
-    public boolean reportCanShow(String authUser, String authKey) {
-        return isApiUser(authUser, authKey);
+    public ApiUser getApiUser(String username) {
+        return apiUserDao.findById(username).orElse(null);
     }
 
 }

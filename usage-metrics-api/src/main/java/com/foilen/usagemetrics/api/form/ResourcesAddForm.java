@@ -12,9 +12,10 @@ package com.foilen.usagemetrics.api.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 import com.foilen.usagemetrics.api.model.UsageResource;
 
-public class ResourcesAddForm extends AbstractAuthApiBase {
+public class ResourcesAddForm extends AbstractApiBase {
 
     private List<UsageResource> usageResources = new ArrayList<>();
 

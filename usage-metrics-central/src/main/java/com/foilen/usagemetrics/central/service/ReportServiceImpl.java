@@ -15,18 +15,20 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.foilen.smalltools.restapi.model.ApiError;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.CollectionsTools;
+import com.foilen.usagemetrics.api.model.OwnerUsageResourceMapping;
 import com.foilen.usagemetrics.api.model.ReportForOwner;
 import com.foilen.usagemetrics.api.model.ReportShowResult;
 import com.foilen.usagemetrics.central.dao.OwnerMappingDao;
 import com.foilen.usagemetrics.central.dao.UsageResourceDao;
 import com.foilen.usagemetrics.central.dao.domain.OwnerMapping;
-import com.foilen.usagemetrics.central.dao.domain.model.OwnerUsageResourceMapping;
 
 @Service
+@Transactional
 public class ReportServiceImpl extends AbstractBasics implements ReportService {
 
     private static final String NO_OWNER = "NO_OWNER";

@@ -7,9 +7,18 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.usagemetrics.central.dao.domain.model;
+package com.foilen.usagemetrics.api.model;
 
-public class OwnerUsageResourceMapping {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.google.common.collect.ComparisonChain;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(value = Include.NON_EMPTY, content = Include.NON_NULL)
+@JsonPropertyOrder(alphabetic = true)
+public class OwnerUsageResourceMapping implements Comparable<OwnerUsageResourceMapping> {
 
     private String type;
     private String owner;
@@ -20,6 +29,14 @@ public class OwnerUsageResourceMapping {
     public OwnerUsageResourceMapping(String type, String owner) {
         this.type = type;
         this.owner = owner;
+    }
+
+    @Override
+    public int compareTo(OwnerUsageResourceMapping o) {
+        return ComparisonChain.start() //
+                .compare(type, o.type) //
+                .compare(owner, o.owner) //
+                .result();
     }
 
     @Override
@@ -34,18 +51,18 @@ public class OwnerUsageResourceMapping {
             return false;
         }
         OwnerUsageResourceMapping other = (OwnerUsageResourceMapping) obj;
-        if (owner == null) {
-            if (other.owner != null) {
-                return false;
-            }
-        } else if (!owner.equals(other.owner)) {
-            return false;
-        }
         if (type == null) {
             if (other.type != null) {
                 return false;
             }
         } else if (!type.equals(other.type)) {
+            return false;
+        }
+        if (owner == null) {
+            if (other.owner != null) {
+                return false;
+            }
+        } else if (!owner.equals(other.owner)) {
             return false;
         }
         return true;
@@ -63,8 +80,8 @@ public class OwnerUsageResourceMapping {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
+        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
         return result;
     }
 

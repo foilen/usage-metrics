@@ -1,0 +1,14 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+}
+
+
+dependencies {
+  compile project(':usage-metrics-common')
+}
+
+apply plugin: 'application'
+
+mainClassName = 'com.foilen.usagemetrics.test_api.TestApiApp'

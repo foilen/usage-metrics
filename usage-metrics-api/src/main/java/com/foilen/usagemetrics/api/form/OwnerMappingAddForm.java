@@ -9,20 +9,18 @@
  */
 package com.foilen.usagemetrics.api.form;
 
-import java.util.Date;
-
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-public class ReportShowForm extends AbstractApiBase {
+public class OwnerMappingAddForm extends AbstractApiBase {
 
-    private Date forDate = new Date();
+    private String ownerName;
 
-    public Date getForDate() {
-        return forDate;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public ReportShowForm setForDate(Date forDate) {
-        this.forDate = forDate;
+    public OwnerMappingAddForm setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
         return this;
     }
 

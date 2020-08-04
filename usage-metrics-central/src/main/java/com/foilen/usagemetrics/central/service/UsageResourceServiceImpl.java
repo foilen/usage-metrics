@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.CollectionsTools;
@@ -30,6 +31,7 @@ import com.foilen.usagemetrics.central.dao.domain.UsageResourceExtended;
 import com.foilen.usagemetrics.common.UsageMetricException;
 
 @Service
+@Transactional
 public class UsageResourceServiceImpl extends AbstractBasics implements UsageResourceService {
 
     @Autowired
