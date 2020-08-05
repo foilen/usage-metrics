@@ -97,7 +97,7 @@ cat > _agent-config.json << _EOF
 {
   "centralUri" : "https://usage.example.com",
   "hostname" : "h1.example.com",
-  "hostnameKey" : "F5AAB679C",
+  "hostnameKey" : "78459150bd7a263e154d103a98ff4405c9b48ce7b4d0e15710570f9852edad73",
 
   "diskSpaceRootFs" : "/hostfs/",
   
