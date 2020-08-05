@@ -10,10 +10,12 @@
 package com.foilen.usagemetrics.central.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import com.foilen.smalltools.hash.HashSha256;
 import com.foilen.smalltools.tools.StringTools;
 
+@Component
 public class HashSha256PasswordEncoder implements PasswordEncoder {
 
     @Override

@@ -20,13 +20,15 @@ public class ApiWebSecurityRepositoryConfigurer extends WebSecurityConfigurerAda
 
     @Autowired
     private EntitlementService entitlementService;
+    @Autowired
+    private HashSha256PasswordEncoder hashSha256PasswordEncoder;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        ApiUsersUserDetailsService apiUsersUserDetailsService = new ApiUsersUserDetailsService(entitlementService);
+        ApiUsersUserDetailsService apiUsersUserDetailsService = new ApiUsersUserDetailsService(entitlementService, hashSha256PasswordEncoder);
 
         auth.userDetailsService(apiUsersUserDetailsService) //
-                .passwordEncoder(new HashSha256PasswordEncoder());
+                .passwordEncoder(hashSha256PasswordEncoder);
     }
 
     @Override

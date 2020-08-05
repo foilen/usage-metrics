@@ -30,9 +30,11 @@ public class ApiUsersUserDetailsService extends AbstractBasics implements UserDe
     public static final String ROLE_HOST = "ROLE_" + HOST;
 
     private EntitlementService entitlementService;
+    private HashSha256PasswordEncoder hashSha256PasswordEncoder;
 
-    public ApiUsersUserDetailsService(EntitlementService entitlementService) {
+    public ApiUsersUserDetailsService(EntitlementService entitlementService, HashSha256PasswordEncoder hashSha256PasswordEncoder) {
         this.entitlementService = entitlementService;
+        this.hashSha256PasswordEncoder = hashSha256PasswordEncoder;
     }
 
     @Override
@@ -41,7 +43,9 @@ public class ApiUsersUserDetailsService extends AbstractBasics implements UserDe
         ApiUser apiUser = entitlementService.getApiUser(username);
         if (apiUser == null) {
             // Give a host user
-            return new User(username, entitlementService.deriveHostnameKey(username), Collections.singletonList(new SimpleGrantedAuthority(HOST)));
+            String rawPassword = entitlementService.deriveHostnameKey(username);
+            String encodedPassword = hashSha256PasswordEncoder.encode(rawPassword);
+            return new User(username, encodedPassword, Collections.singletonList(new SimpleGrantedAuthority(HOST)));
         }
 
         // Api user

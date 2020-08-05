@@ -9,6 +9,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.foilen.usagemetrics.test_api.TestApiApp"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="http://127.0.0.1:8080  test test"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="http://127.0.0.1:8080  test test h1.example.com 78459150bd7a263e154d103a98ff4405c9b48ce7b4d0e15710570f9852edad73"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="usage-metrics-test-api"/>
 </launchConfiguration>
