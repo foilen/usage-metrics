@@ -41,17 +41,17 @@ public class OwnerMappingController extends AbstractBasics {
         return ownerMappingService.add(form);
     }
 
-    @PostMapping("/{ownerName}")
+    @PostMapping("/{ownerName:.+}")
     public FormResult addOwnerMapping(@PathVariable String ownerName, @RequestBody OwnerUsageResourceMappingOwnerMappingForm form) {
         return ownerMappingService.addMapping(ownerName, form);
     }
 
-    @DeleteMapping("/{ownerName}")
+    @DeleteMapping("/{ownerName:.+}")
     public FormResult delete(@PathVariable String ownerName) {
         return ownerMappingService.delete(ownerName);
     }
 
-    @DeleteMapping("/{ownerName}/{type}/{owner}")
+    @DeleteMapping("/{ownerName}/{type}/{owner:.+}")
     public FormResult deleteOwnerMapping(@PathVariable String ownerName, @PathVariable String type, @PathVariable String owner) {
         return ownerMappingService.deleteMapping(ownerName, type, owner);
     }
@@ -61,7 +61,7 @@ public class OwnerMappingController extends AbstractBasics {
         return ownerMappingService.findAll();
     }
 
-    @GetMapping("/{ownerName}")
+    @GetMapping("/{ownerName:.+}")
     public OwnerMappingResult get(@PathVariable String ownerName) {
         return ownerMappingService.find(ownerName);
     }
