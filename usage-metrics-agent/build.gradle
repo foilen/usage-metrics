@@ -1,24 +1,13 @@
-buildscript {
-  repositories {
-    jcenter()
-  }
-}
-
-
 dependencies {
   compile project(':usage-metrics-common')
   
   compile 'org.mariadb.jdbc:mariadb-java-client:2.6.1' 
-  compile 'org.springframework.boot:spring-boot-starter-jdbc:2.3.1.RELEASE' 
+  compile "org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion" 
   
   // Tests
   testCompileOnly 'junit:junit:4.13'
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
   testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
-}
-
-test {
-  useJUnitPlatform()
 }
 
 apply plugin: 'application'

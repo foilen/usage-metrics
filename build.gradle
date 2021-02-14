@@ -1,12 +1,12 @@
 buildscript {
   repositories {
     mavenLocal()
-    jcenter()
+    mavenCentral()
   }
 }
 
 plugins {
-	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'org.springframework.boot' version "$springBootVersion"
 }
 
 allprojects {
@@ -15,6 +15,7 @@ allprojects {
 
   group = 'com.foilen'
   version = System.getenv('VERSION')?:'master-SNAPSHOT'
+  ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 }
 
@@ -26,13 +27,9 @@ subprojects {
   repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
-    maven {
-      url 'https://dl.bintray.com/foilen/maven'
-    }
   }
 
-  sourceCompatibility = 1.11
+  sourceCompatibility = 11
 
   eclipse {
     classpath {
